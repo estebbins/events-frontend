@@ -12,6 +12,7 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
+import ShowEvent from './components/events/ShowEvent'
 
 const App = () => {
 
@@ -60,6 +61,10 @@ const App = () => {
                 <SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
               </RequireAuth>
             }
+          />
+        <Route 
+            path='events/:id'
+            element={ <ShowEvent user={user} msgAlert={msgAlert} />}
           />
           <Route
             path='/change-password'
