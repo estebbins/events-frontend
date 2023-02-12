@@ -8,6 +8,7 @@ import messages from '../shared/AutoDismissAlert/messages'
 import LoadingScreen from '../shared/LoadingScreen'
 import EditEventModal from './EditEventModal'
 import ShowActivity from '../activities/ShowActivity'
+import NewActivityModal from '../activities/NewActivityModal'
 
 // we need to get the event's id from the route parameters
 // then we need to make a request to the api
@@ -22,6 +23,7 @@ const activityCardContainerLayout = {
 const ShowEvent = (props) => {
     const [event, setEvent] = useState(null)
     const [editModalShow, setEditModalShow] = useState(false)
+    const [activityModalShow, setActivityModalShow] = useState(false)
     const [updated, setUpdated] = useState(false)
 
     const { id } = useParams()
@@ -101,12 +103,12 @@ const ShowEvent = (props) => {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        {/* <Button 
+                        <Button 
                             className="m-2" variant="info"
                             onClick={() => setActivityModalShow(true)}
                         >
                             Add an activity to {event.name}!
-                        </Button> */}
+                        </Button>
                         {
                             event.owner && user && event.owner._id === user._id
                             ?
@@ -142,13 +144,13 @@ const ShowEvent = (props) => {
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 event={event}
             />
-            {/* <NewToyModal 
+            <NewActivityModal 
                 event={event}
-                show={toyModalShow}
-                handleClose={() => setToyModalShow(false)}
+                show={activityModalShow}
+                handleClose={() => setActivityModalShow(false)}
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
-            /> */}
+            />
         </>
     )
 }

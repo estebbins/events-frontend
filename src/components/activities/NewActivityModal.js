@@ -1,18 +1,13 @@
-// this activity modal shows up on a ShowActivity component
-// has the ability to edit individual activities, one at a time
-// will need to call the api,
-// send a message,
-// refresh the parent.
 import { useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import ActivityForm from '../shared/ActivityForm'
-import { updateActivity } from '../../api/activities'
+import { createActivity } from '../../api/activities'
 import messages from '../shared/AutoDismissAlert/messages'
 
-const EditActivityModal = (props) => {
-    const { user, event, show, handleClose, msgAlert, triggerRefresh } = props
+const NewActivityModal = (props) => {
+    const { event, show, handleClose, msgAlert, triggerRefresh } = props
 
-    const [activity, setActivity] = useState(props.activity)
+    const [activity, setActivity] = useState({})
 
     const onChange = (e) => {
         e.persist()
@@ -22,8 +17,10 @@ const EditActivityModal = (props) => {
             let updatedValue = e.target.value
 
             // to handle a checkbox, we can check the name, and change the value that is output. Checkboxes only know if they are checked or not
-            if (e.target.type === 'number') {
-                updatedValue = parseInt(e.target.value)
+            if (updatedName === 'isSqueaky' && e.target.checked) {
+                updatedValue = true
+            } else if (updatedName === 'isSqueaky' && !e.target.checked) {
+                updatedValue = false
             }
             
             const updatedActivity = {
@@ -41,14 +38,14 @@ const EditActivityModal = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        updateActivity(user, event._id, activity)
+        createActivity(event._id, activity)
             // first we'll close the modal
             .then(() => handleClose())
             // we'll also send a success message
             .then(() => {
                 msgAlert({
                     heading: 'Oh Yeah!',
-                    message: messages.editActivitySuccess,
+                    message: messages.createActivitySuccess,
                     variant: 'success'
                 })
             })
@@ -57,7 +54,7 @@ const EditActivityModal = (props) => {
             .catch(() => {
                 msgAlert({
                     heading: 'Oh No!',
-                    message: messages.editActivityFailure,
+                    message: messages.createActivityFailure,
                     variant: 'danger'
                 })
             })
@@ -71,11 +68,11 @@ const EditActivityModal = (props) => {
                     activity={activity}
                     handleChange={onChange}
                     handleSubmit={onSubmit}
-                    heading="Update The Activity"
+                    heading={`Give ${event.name} an activity!`}
                 />
             </Modal.Body>
         </Modal>
     )
 }
 
-export default EditActivityModal
+export default NewActivityModal

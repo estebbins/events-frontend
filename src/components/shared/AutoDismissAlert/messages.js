@@ -12,6 +12,10 @@ const messages = {
     removeEventFailure: 'boohoo couldnt delete!',
     deleteActivitySuccess: 'Woooooohoooooo delete that activity',
     deleteActivityFailure: 'Wahhhhh was not able to delete activity',
+    createActivitySuccess: 'Yay! New activity Added',
+    createActivityFailure: 'Sorry boo, no activity for yoo',
+    editActivitySuccess: 'This even is even better than before!',
+    editActivityFailure: 'Could not edit this one!'
 }
 
 module.exports = messages

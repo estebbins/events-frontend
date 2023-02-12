@@ -15,7 +15,7 @@ const ShowActivity = (props) => {
     const destroyActivity = () => {
         // this is the api call file function
         // it requires three args, user, eventId, & activityId
-        deleteActivity(user, event.id, activity._id)
+        deleteActivity(user, event._id, activity._id)
             // upon success, we want to send a message
             .then(() => {
                 msgAlert({
@@ -69,7 +69,7 @@ const ShowActivity = (props) => {
                     }
                 </Card.Footer>
             </Card>
-            {/* <EditActivityModal
+            <EditActivityModal
                 user={user}
                 event={event}
                 activity={activity}
@@ -77,7 +77,7 @@ const ShowActivity = (props) => {
                 handleClose={() => setEditModalShow(false)}
                 msgAlert={msgAlert}
                 triggerRefresh={triggerRefresh}
-            /> */}
+            />
         </>
     )
 }
