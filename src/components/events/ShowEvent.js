@@ -7,10 +7,17 @@ import { getOneEvent, removeEvent, updateEvent } from '../../api/events'
 import messages from '../shared/AutoDismissAlert/messages'
 import LoadingScreen from '../shared/LoadingScreen'
 import EditEventModal from './EditEventModal'
+import ShowActivity from '../activities/ShowActivity'
 
 // we need to get the event's id from the route parameters
 // then we need to make a request to the api
 // when we retrieve a event from the api, we'll render the data on the screen
+
+const activityCardContainerLayout = {
+    display: 'flex',
+    justifyContent: 'center',
+    flexFlow: 'row wrap'
+}
 
 const ShowEvent = (props) => {
     const [event, setEvent] = useState(null)
@@ -56,6 +63,21 @@ const ShowEvent = (props) => {
                     variant: 'danger'
                 })
             })
+    }
+    let activityCards
+    if (event) {
+        if (event.activities.length > 0) {
+            activityCards = event.activities.map(activity => (
+                <ShowActivity
+                    key={activity._id} 
+                    activity={activity}
+                    user={user}
+                    event={event}
+                    msgAlert={msgAlert}
+                    triggerRefresh={() => setUpdated(prev => !prev)}
+                />
+            ))
+        }
     }
 
     if(!event) {
@@ -107,6 +129,9 @@ const ShowEvent = (props) => {
                         }
                     </Card.Footer>
                 </Card>
+            </Container>
+            <Container className="m-2" style={activityCardContainerLayout}>
+                {activityCards}
             </Container>
             <EditEventModal 
                 user={user}

@@ -9,7 +9,9 @@ const messages = {
     getEventsFailure: 'Sorry, no events here!',
     getOneEventFailure: 'Couldnt get this one!',
     removeEventSuccess: 'Successful deletion!',
-    removeEventFailure: 'boohoo couldnt delete!'
+    removeEventFailure: 'boohoo couldnt delete!',
+    deleteActivitySuccess: 'Woooooohoooooo delete that activity',
+    deleteActivityFailure: 'Wahhhhh was not able to delete activity',
 }
 
 module.exports = messages
