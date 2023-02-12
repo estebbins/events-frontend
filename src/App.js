@@ -13,6 +13,7 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import ShowEvent from './components/events/ShowEvent'
+import CreateEvent from './components/events/CreateEvent'
 
 const App = () => {
 
@@ -54,25 +55,29 @@ const App = () => {
 						path='/sign-in'
 						element={<SignIn msgAlert={msgAlert} setUser={setUser} />}
 					/>
-          <Route
-            path='/sign-out'
-            element={
-              <RequireAuth user={user}>
-                <SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
-              </RequireAuth>
-            }
-          />
-        <Route 
-            path='events/:id'
-            element={ <ShowEvent user={user} msgAlert={msgAlert} />}
-          />
-          <Route
-            path='/change-password'
-            element={
-              <RequireAuth user={user}>
-                <ChangePassword msgAlert={msgAlert} user={user} />
-              </RequireAuth>}
-          />
+                    <Route
+                        path='/sign-out'
+                        element={
+                        <RequireAuth user={user}>
+                            <SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
+                        </RequireAuth>
+                        }
+                    />
+                    <Route
+                        path='/change-password'
+                        element={
+                        <RequireAuth user={user}>
+                            <ChangePassword msgAlert={msgAlert} user={user} />
+                        </RequireAuth>}
+                    />
+                    <Route 
+                        path='/create-event'
+                        element={ <CreateEvent user={user} msgAlert={msgAlert} />}
+                    />
+                    <Route 
+                        path='events/:id'
+                        element={ <ShowEvent user={user} msgAlert={msgAlert} />}
+                    />
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
 					<AutoDismissAlert

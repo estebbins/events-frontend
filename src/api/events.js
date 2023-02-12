@@ -13,6 +13,18 @@ export const getOneEvent = (id) => {
 }
 
 // Create (create an event)
+export const createEvent = (user, newEvent) => {
+    // console.log('this is the user', user)
+    // console.log('this is the newEvent', newEvent)
+    return axios({
+        url: `${apiUrl}/events`,
+        method: 'POST',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        },
+        data: { event: newEvent }
+    })
+}
 
 // Update (update an event)
 

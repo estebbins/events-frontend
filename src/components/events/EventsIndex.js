@@ -32,7 +32,7 @@ const EventsIndex = (props) => {
             .catch(err => {
                 msgAlert({
                     heading: 'Error getting events',
-                    message: 'No events uh oh!',
+                    message: messages.getEventsFailure,
                     variant: 'danger'
                 })
                 setError(true)

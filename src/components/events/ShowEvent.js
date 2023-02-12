@@ -47,13 +47,13 @@ const ShowEvent = (props) => {
                     <Card.Header>{ event.name }</Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            <div><small>Description: { event.description }</small></div>
-                            <div><small>Setting: { event.setting }</small></div>
-                            <div>
+                            <span><small>Description: { event.description }</small></span>
+                            <span><small>Setting: { event.setting }</small></span>
+                            <span>
                                 <small>
                                     Participants: { event.participants }
                                 </small>
-                            </div>
+                            </span>
                         </Card.Text>
                     </Card.Body>
                 </Card>
