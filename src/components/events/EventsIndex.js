@@ -63,6 +63,11 @@ const EventsIndex = (props) => {
                 <Card.Text>
                     <Link to={`/events/${event._id}`} className="btn btn-info">View { event.name }</Link>
                 </Card.Text>
+                { event.owner ?
+                <Card.Footer>
+                    owner: {event.owner.email}
+                </Card.Footer>
+                : null }
             </Card.Body>
         </Card>
     ))

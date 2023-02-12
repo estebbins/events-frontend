@@ -27,5 +27,24 @@ export const createEvent = (user, newEvent) => {
 }
 
 // Update (update an event)
+export const updateEvent = (user, updatedEvent) => {
+    return axios({
+        url: `${apiUrl}/events/${updatedEvent._id}`,
+        method: 'PATCH',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        },
+        data: { event: updatedEvent }
+    })
+}
 
 // Delete (delete an event)
+export const removeEvent = (user, eventId) => {
+    return axios({
+        url: `${apiUrl}/events/${eventId}`,
+        method: 'DELETE',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
+}
