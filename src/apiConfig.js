@@ -1,6 +1,5 @@
 let apiUrl
 const apiUrls = {
-    // YOU MUST CHANGE PRODUCTION URL WHEN DEPLOYING
 	production: 'https://eventr.fly.dev',
 	development: 'http://localhost:8000',
 }
